@@ -1,17 +1,17 @@
-import { Fragment } from 'react'
-
-import './App.css'
-
+import { Fragment } from "react";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router";
+import SignInScreen from "@/pages/sign-in-screen";
 function App() {
-  
-
   return (
-     <Fragment>
-           <div className='min-h-screen flex justify-center items-center'>
-             <h1 className='text-blue-500 text-5xl'  >test</h1> 
-           </div>
-     </Fragment>
-  )
+    <Fragment>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SignInScreen />} />
+        </Routes>
+      </BrowserRouter>
+    </Fragment>
+  );
 }
 
-export default App
+export default App;

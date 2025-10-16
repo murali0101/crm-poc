@@ -1,4 +1,4 @@
-import { CompaniesTable } from './components/companies-table'
+import { ApiTokensTable } from './components/api-tokens-table'
 import { RecentActivities, type Activity } from '@/components/recent-activities'
 import { AppSidebar } from '@/components/app-sidebar'
 import {
@@ -14,25 +14,20 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar'
 
-const companyActivities: Activity[] = [
+const apiTokenActivities: Activity[] = [
   {
     person: { name: 'John Doe', fallback: 'JD' },
-    action: 'Created a new company: "Innovate Inc."',
+    action: 'Created a new API token: "Primary Token"',
     timestamp: '1 day ago',
   },
   {
     person: { name: 'Jane Smith', fallback: 'JS' },
-    action: 'Updated "Synergy Corp." to "Customer"',
+    action: 'Revoked API token: "Old Token"',
     timestamp: '2 days ago',
-  },
-  {
-    person: { name: 'Peter Jones', fallback: 'PJ' },
-    action: 'Archived company: "Quantum Solutions"',
-    timestamp: '3 days ago',
   },
 ]
 
-export default function CompaniesScreen() {
+export default function ApiTokensScreen() {
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -47,7 +42,7 @@ export default function CompaniesScreen() {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Companies</BreadcrumbPage>
+                  <BreadcrumbPage>API Tokens</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -55,12 +50,12 @@ export default function CompaniesScreen() {
         </header>
         <div className="grid flex-1 gap-4 p-4 pt-0 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <CompaniesTable />
+            <ApiTokensTable />
           </div>
           <RecentActivities
-            title="Company Activities"
-            description="Recent activities related to companies."
-            activities={companyActivities}
+            title="API Token Activities"
+            description="Recent activities related to API tokens."
+            activities={apiTokenActivities}
           />
         </div>
       </SidebarInset>

@@ -1,39 +1,36 @@
-import { DealsBoard } from "./components/deals-board";
-import {
-  RecentActivities,
-  type Activity,
-} from "@/components/recent-activities";
-import { AppSidebar } from "@/components/app-sidebar";
+import { DealsBoard } from './components/deals-board'
+import { RecentActivities, type Activity } from '@/components/recent-activities'
+import { AppSidebar } from '@/components/app-sidebar'
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
+} from '@/components/ui/breadcrumb'
+import { Separator } from '@/components/ui/separator'
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar'
 
 const dealActivities: Activity[] = [
   {
-    person: { name: "Olivia Martin", fallback: "OM" },
+    person: { name: 'Olivia Martin', fallback: 'OM' },
     action: 'Moved "Website Redesign" to Proposal',
-    timestamp: "10 min ago",
+    timestamp: '10 min ago',
   },
   {
-    person: { name: "John Doe", fallback: "JD" },
+    person: { name: 'John Doe', fallback: 'JD' },
     action: 'Won deal "New Marketing Campaign"',
-    timestamp: "1 hour ago",
+    timestamp: '1 hour ago',
   },
   {
-    person: { name: "Jane Smith", fallback: "JS" },
+    person: { name: 'Jane Smith', fallback: 'JS' },
     action: 'Lost deal "E-commerce Platform"',
-    timestamp: "4 hours ago",
+    timestamp: '4 hours ago',
   },
-];
+]
 
 export default function DealsScreen() {
   return (
@@ -66,5 +63,5 @@ export default function DealsScreen() {
         </div>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

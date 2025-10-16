@@ -1,6 +1,6 @@
-import { LoginForm } from "@/components/login-form";
-import { Fragment } from "react/jsx-runtime";
-import { SignInContextProvider } from "./contexts/SignInContextProvider";
+import { LoginForm } from '@/components/login-form'
+import { Fragment } from 'react/jsx-runtime'
+import { SignInContextProvider } from './contexts/SignInContextProvider'
 
 function SignInScreen() {
   return (
@@ -9,10 +9,10 @@ function SignInScreen() {
         <SignInScreenWrapper />
       </SignInContextProvider>
     </Fragment>
-  );
+  )
 }
 
-export default SignInScreen;
+export default SignInScreen
 
 const SignInScreenWrapper = () => {
   return (
@@ -23,5 +23,5 @@ const SignInScreenWrapper = () => {
         </div>
       </div>
     </Fragment>
-  );
-};
+  )
+}

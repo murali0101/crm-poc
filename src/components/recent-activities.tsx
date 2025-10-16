@@ -1,20 +1,20 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export type Activity = {
   person: {
-    name: string;
-    fallback: string;
-  };
-  action: string;
-  timestamp: string;
-};
+    name: string
+    fallback: string
+  }
+  action: string
+  timestamp: string
+}
 
 type RecentActivitiesProps = {
-  title: string;
-  description: string;
-  activities: Activity[];
-};
+  title: string
+  description: string
+  activities: Activity[]
+}
 
 export function RecentActivities({
   title,
@@ -50,5 +50,5 @@ export function RecentActivities({
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }

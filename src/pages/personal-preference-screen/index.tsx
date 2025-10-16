@@ -1,6 +1,6 @@
-import { useTheme } from "@/contexts/ThemeContextProvider";
-import { AppSidebar } from "@/components/app-sidebar";
-import { Button } from "@/components/ui/button";
+import { useTheme } from '@/contexts/ThemeContextProvider'
+import { AppSidebar } from '@/components/app-sidebar'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -8,29 +8,29 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { SiteHeader } from "@/components/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from '@/components/ui/select'
+import { SiteHeader } from '@/components/site-header'
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 export default function PersonalPreferenceScreen() {
-  const { theme, setTheme, colorTheme, setColorTheme } = useTheme();
+  const { theme, setTheme, colorTheme, setColorTheme } = useTheme()
 
   return (
     <SidebarProvider
       style={
         {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
-          "--header-height": "calc(var(--spacing) * 12)",
+          '--sidebar-width': 'calc(var(--spacing) * 72)',
+          '--header-height': 'calc(var(--spacing) * 12)',
         } as React.CSSProperties
       }
     >
@@ -231,5 +231,5 @@ export default function PersonalPreferenceScreen() {
         </div>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

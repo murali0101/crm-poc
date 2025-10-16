@@ -1,40 +1,37 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import {
-  RecentActivities,
-  type Activity,
-} from "@/components/recent-activities";
-import { TasksList } from "./components/tasks-list";
+import { AppSidebar } from '@/components/app-sidebar'
+import { RecentActivities, type Activity } from '@/components/recent-activities'
+import { TasksList } from './components/tasks-list'
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
+} from '@/components/ui/breadcrumb'
+import { Separator } from '@/components/ui/separator'
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar'
 
 const taskActivities: Activity[] = [
   {
-    person: { name: "You", fallback: "Y" },
+    person: { name: 'You', fallback: 'Y' },
     action: 'Completed task: "Send invoice to Apex Industries"',
-    timestamp: "1 hour ago",
+    timestamp: '1 hour ago',
   },
   {
-    person: { name: "John Doe", fallback: "JD" },
+    person: { name: 'John Doe', fallback: 'JD' },
     action: 'Assigned a new task to you: "Follow up with Innovate Inc."',
-    timestamp: "3 hours ago",
+    timestamp: '3 hours ago',
   },
   {
-    person: { name: "You", fallback: "Y" },
+    person: { name: 'You', fallback: 'Y' },
     action:
       'Changed status of "Prepare proposal for Synergy Corp." to In Progress',
-    timestamp: "1 day ago",
+    timestamp: '1 day ago',
   },
-];
+]
 
 export default function TasksScreen() {
   return (
@@ -69,5 +66,5 @@ export default function TasksScreen() {
         </div>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

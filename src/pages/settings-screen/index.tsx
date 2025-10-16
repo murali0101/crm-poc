@@ -1,9 +1,6 @@
-import {
-  RecentActivities,
-  type Activity,
-} from "@/components/recent-activities";
-import { AppSidebar } from "@/components/app-sidebar";
-import { Button } from "@/components/ui/button";
+import { RecentActivities, type Activity } from '@/components/recent-activities'
+import { AppSidebar } from '@/components/app-sidebar'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -11,45 +8,45 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { SiteHeader } from "@/components/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from '@/components/ui/select'
+import { SiteHeader } from '@/components/site-header'
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 const settingsActivities: Activity[] = [
   {
-    person: { name: "You", fallback: "Y" },
-    action: "Changed your name to John Doe.",
-    timestamp: "2 days ago",
+    person: { name: 'You', fallback: 'Y' },
+    action: 'Changed your name to John Doe.',
+    timestamp: '2 days ago',
   },
   {
-    person: { name: "You", fallback: "Y" },
-    action: "Enabled push notifications.",
-    timestamp: "5 days ago",
+    person: { name: 'You', fallback: 'Y' },
+    action: 'Enabled push notifications.',
+    timestamp: '5 days ago',
   },
   {
-    person: { name: "System", fallback: "S" },
-    action: "Your password was successfully changed.",
-    timestamp: "1 week ago",
+    person: { name: 'System', fallback: 'S' },
+    action: 'Your password was successfully changed.',
+    timestamp: '1 week ago',
   },
-];
+]
 
 export default function SettingsScreen() {
   return (
     <SidebarProvider
       style={
         {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
-          "--header-height": "calc(var(--spacing) * 12)",
+          '--sidebar-width': 'calc(var(--spacing) * 72)',
+          '--header-height': 'calc(var(--spacing) * 12)',
         } as React.CSSProperties
       }
     >
@@ -235,5 +232,5 @@ export default function SettingsScreen() {
         </div>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

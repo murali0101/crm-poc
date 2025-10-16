@@ -1,19 +1,20 @@
-import { Fragment } from "react";
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SignInScreen from "@/pages/sign-in-screen";
-import SignUpScreen from "@/pages/sign-up-screen";
-import DashboardScreen from "./pages/dashboard-screen";
-import ContactsScreen from "./pages/contacts-screen";
-import SettingsScreen from "./pages/settings-screen";
-import CompaniesScreen from "./pages/companies-screen";
-import DealsScreen from "./pages/deals-screen";
-import TasksScreen from "./pages/tasks-screen";
-import ReportsScreen from "./pages/reports-screen";
-import ManageUsersScreen from "./pages/manage-user-screen";
-import PersonalPreferenceScreen from "./pages/personal-preference-screen";
-import { AuthContextProvider } from "./contexts/AuthContextProvider";
-import { ThemeProvider } from "./contexts/ThemeContextProvider";
+import { Fragment } from 'react'
+import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import SignInScreen from '@/pages/sign-in-screen'
+import SignUpScreen from '@/pages/sign-up-screen'
+import DashboardScreen from './pages/dashboard-screen'
+import ContactsScreen from './pages/contacts-screen'
+import SettingsScreen from './pages/settings-screen'
+import CompaniesScreen from './pages/companies-screen'
+import DealsScreen from './pages/deals-screen'
+import TasksScreen from './pages/tasks-screen'
+import ReportsScreen from './pages/reports-screen'
+import ManageUsersScreen from './pages/manage-user-screen'
+import PersonalPreferenceScreen from './pages/personal-preference-screen'
+import ApiTokensScreen from './pages/api-tokens-screen'
+import { AuthContextProvider } from './contexts/AuthContextProvider'
+import { ThemeProvider } from './contexts/ThemeContextProvider'
 
 function App() {
   return (
@@ -36,12 +37,13 @@ function App() {
                 path="/personal-preference"
                 element={<PersonalPreferenceScreen />}
               />
+              <Route path="/api-tokens" element={<ApiTokensScreen />} />
             </Routes>
           </BrowserRouter>
         </ThemeProvider>
       </AuthContextProvider>
     </Fragment>
-  );
+  )
 }
 
-export default App;
+export default App

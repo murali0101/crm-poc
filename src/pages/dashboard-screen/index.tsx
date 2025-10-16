@@ -1,17 +1,17 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import { Dashboard } from "./components/dashboard";
+import { AppSidebar } from '@/components/app-sidebar'
+import { Dashboard } from './components/dashboard'
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
+} from '@/components/ui/breadcrumb'
+import { Separator } from '@/components/ui/separator'
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar'
 
 export default function DashboardScreen() {
   return (
@@ -39,5 +39,5 @@ export default function DashboardScreen() {
         </div>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

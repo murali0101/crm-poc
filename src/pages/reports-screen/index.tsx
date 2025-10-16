@@ -1,41 +1,38 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import {
-  RecentActivities,
-  type Activity,
-} from "@/components/recent-activities";
-import { ReportWidget } from "./components/report-widget";
-import { Bar, BarChart, XAxis } from "recharts";
-import { ChartContainer } from "@/components/ui/chart";
+import { AppSidebar } from '@/components/app-sidebar'
+import { RecentActivities, type Activity } from '@/components/recent-activities'
+import { ReportWidget } from './components/report-widget'
+import { Bar, BarChart, XAxis } from 'recharts'
+import { ChartContainer } from '@/components/ui/chart'
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
+} from '@/components/ui/breadcrumb'
+import { Separator } from '@/components/ui/separator'
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar'
 
 const reportActivities: Activity[] = [
   {
-    person: { name: "Admin", fallback: "A" },
+    person: { name: 'Admin', fallback: 'A' },
     action: 'Generated "Sales Performance" report',
-    timestamp: "1 hour ago",
+    timestamp: '1 hour ago',
   },
   {
-    person: { name: "John Doe", fallback: "JD" },
+    person: { name: 'John Doe', fallback: 'JD' },
     action: 'Viewed "Lead Conversion Rate" report',
-    timestamp: "3 hours ago",
+    timestamp: '3 hours ago',
   },
   {
-    person: { name: "Jane Smith", fallback: "JS" },
+    person: { name: 'Jane Smith', fallback: 'JS' },
     action: 'Exported "Q3 Revenue" report',
-    timestamp: "1 day ago",
+    timestamp: '1 day ago',
   },
-];
+]
 
 export default function ReportsScreen() {
   return (
@@ -67,8 +64,8 @@ export default function ReportsScreen() {
               >
                 <BarChart
                   data={[
-                    { month: "Jan", sales: 120 },
-                    { month: "Feb", sales: 150 },
+                    { month: 'Jan', sales: 120 },
+                    { month: 'Feb', sales: 150 },
                   ]}
                 >
                   <XAxis dataKey="month" />
@@ -99,5 +96,5 @@ export default function ReportsScreen() {
         </div>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

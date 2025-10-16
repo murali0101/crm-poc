@@ -1,11 +1,11 @@
-import { ChevronRight, type LucideIcon } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { ChevronRight, type LucideIcon } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
 
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+} from '@/components/ui/collapsible'
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -15,23 +15,23 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar'
 
 export function NavMain({
   items,
 }: {
   items: {
-    title: string;
-    url: string;
-    icon?: LucideIcon;
-    isActive?: boolean;
+    title: string
+    url: string
+    icon?: LucideIcon
+    isActive?: boolean
     items?: {
-      title: string;
-      url: string;
-    }[];
-  }[];
+      title: string
+      url: string
+    }[]
+  }[]
 }) {
-  const location = useLocation();
+  const location = useLocation()
 
   return (
     <SidebarGroup>
@@ -73,7 +73,7 @@ export function NavMain({
               <SidebarMenuButton
                 asChild
                 tooltip={item.title}
-                variant={location.pathname === item.url ? "secondary" : "ghost"}
+                variant={location.pathname === item.url ? 'secondary' : 'ghost'}
               >
                 <Link to={item.url}>
                   {item.icon && <item.icon />}
@@ -81,9 +81,9 @@ export function NavMain({
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
-          ),
+          )
         )}
       </SidebarMenu>
     </SidebarGroup>
-  );
+  )
 }

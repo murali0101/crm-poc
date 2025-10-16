@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -122,6 +122,7 @@
 /* Themes */
 .theme-blue {
   --primary: oklch(0.55 0.18 260);
+  --sidebar-primary: oklch(0.55 0.18 260);
   --primary-foreground: oklch(0.98 0.02 250);
   --secondary: oklch(0.95 0.02 250);
   --secondary-foreground: oklch(0.22 0.04 250);
@@ -132,6 +133,7 @@
 
 .dark .theme-blue {
   --primary: oklch(0.55 0.18 260);
+  --sidebar-primary: oklch(0.55 0.18 260);
   --primary-foreground: oklch(0.98 0.02 250);
   --secondary: oklch(0.3 0.02 250);
   --secondary-foreground: oklch(0.98 0.02 250);
@@ -142,6 +144,7 @@
 
 .theme-purple {
   --primary: oklch(0.6 0.15 300);
+  --sidebar-primary: oklch(0.6 0.15 300);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.95 0.02 280);
   --secondary-foreground: oklch(0.205 0 0);
@@ -152,6 +155,7 @@
 
 .dark .theme-purple {
   --primary: oklch(0.6 0.15 300);
+  --sidebar-primary: oklch(0.6 0.15 300);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.3 0.02 280);
   --secondary-foreground: oklch(0.98 0.01 270);
@@ -162,6 +166,7 @@
 
 .theme-green {
   --primary: oklch(0.6 0.15 150);
+  --sidebar-primary: oklch(0.6 0.15 150);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.95 0.05 150);
   --secondary-foreground: oklch(0.205 0 0);
@@ -172,6 +177,7 @@
 
 .dark .theme-green {
   --primary: oklch(0.6 0.15 150);
+  --sidebar-primary: oklch(0.6 0.15 150);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.3 0.05 150);
   --secondary-foreground: oklch(0.98 0.01 150);
@@ -182,6 +188,7 @@
 
 .theme-orange {
   --primary: oklch(0.65 0.15 50);
+  --sidebar-primary: oklch(0.65 0.15 50);
   --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.95 0.05 50);
   --secondary-foreground: oklch(0.205 0 0);
@@ -192,6 +199,7 @@
 
 .dark .theme-orange {
   --primary: oklch(0.65 0.15 50);
+  --sidebar-primary: oklch(0.65 0.15 50);
   --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.3 0.05 50);
   --secondary-foreground: oklch(0.98 0.01 50);

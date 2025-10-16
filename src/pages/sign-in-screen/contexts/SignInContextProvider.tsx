@@ -1,42 +1,42 @@
-import { createContext, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { createContext, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 type SignInContextType = {
-  handleOnClickForLoginBtn: () => void;
-  handleOnClickForSignUpBtn: () => void;
-};
+  handleOnClickForLoginBtn: (email: string) => void
+  handleOnClickForSignUpBtn: () => void
+}
 
-const SignInContext = createContext<SignInContextType | undefined>(undefined);
+const SignInContext = createContext<SignInContextType | undefined>(undefined)
 
 export function SignInContextProvider({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const [, setEmail] = useLocalStorage('email', '')
   const handleOnClickForSignUpBtn = () => {
-    navigate("/sign-up");
-  };
-  const handleOnClickForLoginBtn = (
-    event: React.FormEvent<HTMLFormElement>,
-  ) => {
-    event.preventDefault();
-    navigate("/dashboard");
-  };
+    navigate('/sign-up')
+  }
+  const handleOnClickForLoginBtn = (email: string) => {
+    setEmail(email)
+    navigate('/dashboard')
+  }
   const value = {
     handleOnClickForLoginBtn,
     handleOnClickForSignUpBtn,
-  };
+  }
 
   return (
     <SignInContext.Provider value={value}>{children}</SignInContext.Provider>
-  );
+  )
 }
 
 export function useSignInContext() {
-  const context = useContext(SignInContext);
+  const context = useContext(SignInContext)
   if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth must be used within an AuthProvider')
   }
-  return context;
+  return context
 }

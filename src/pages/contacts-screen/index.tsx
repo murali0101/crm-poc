@@ -1,39 +1,36 @@
-import {
-  RecentActivities,
-  type Activity,
-} from "@/components/recent-activities";
-import { AppSidebar } from "@/components/app-sidebar";
+import { RecentActivities, type Activity } from '@/components/recent-activities'
+import { AppSidebar } from '@/components/app-sidebar'
 
-import { SiteHeader } from "@/components/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { SiteHeader } from '@/components/site-header'
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 
-import { UsersTable } from "./table";
+import { UsersTable } from './table'
 
 const contactActivities: Activity[] = [
   {
-    person: { name: "Mary Johnson", fallback: "MJ" },
+    person: { name: 'Mary Johnson', fallback: 'MJ' },
     action: 'Created a new contact: "David Williams"',
-    timestamp: "4 hours ago",
+    timestamp: '4 hours ago',
   },
   {
-    person: { name: "John Doe", fallback: "JD" },
+    person: { name: 'John Doe', fallback: 'JD' },
     action: 'Updated contact "Jane Smith"',
-    timestamp: "1 day ago",
+    timestamp: '1 day ago',
   },
   {
-    person: { name: "Admin", fallback: "A" },
+    person: { name: 'Admin', fallback: 'A' },
     action: 'Deactivated user "Peter Jones"',
-    timestamp: "2 days ago",
+    timestamp: '2 days ago',
   },
-];
+]
 
 export default function ContactsScreen() {
   return (
     <SidebarProvider
       style={
         {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
-          "--header-height": "calc(var(--spacing) * 12)",
+          '--sidebar-width': 'calc(var(--spacing) * 72)',
+          '--header-height': 'calc(var(--spacing) * 12)',
         } as React.CSSProperties
       }
     >
@@ -56,5 +53,5 @@ export default function ContactsScreen() {
         </div>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

@@ -1,11 +1,11 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
+} from '@/components/ui/chart'
 
 export function Dashboard() {
   return (
@@ -116,8 +116,8 @@ export function Dashboard() {
             <ChartContainer
               config={{
                 desktop: {
-                  label: "Desktop",
-                  color: "hsl(var(--primary))",
+                  label: 'Desktop',
+                  color: 'hsl(var(--primary))',
                 },
               }}
               className="aspect-auto h-[250px] w-full"
@@ -125,12 +125,12 @@ export function Dashboard() {
               <BarChart
                 accessibilityLayer
                 data={[
-                  { month: "January", desktop: 186 },
-                  { month: "February", desktop: 305 },
-                  { month: "March", desktop: 237 },
-                  { month: "April", desktop: 73 },
-                  { month: "May", desktop: 209 },
-                  { month: "June", desktop: 214 },
+                  { month: 'January', desktop: 186 },
+                  { month: 'February', desktop: 305 },
+                  { month: 'March', desktop: 237 },
+                  { month: 'April', desktop: 73 },
+                  { month: 'May', desktop: 209 },
+                  { month: 'June', desktop: 214 },
                 ]}
               >
                 <CartesianGrid vertical={false} />
@@ -244,5 +244,5 @@ export function Dashboard() {
         </Card>
       </div>
     </div>
-  );
+  )
 }

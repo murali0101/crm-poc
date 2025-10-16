@@ -1,26 +1,26 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card'
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
-} from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+} from '@/components/ui/field'
+import { Input } from '@/components/ui/input'
+import { Link } from 'react-router-dom'
 
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   return (
     <Card {...props}>
       <CardHeader>
-        <CardTitle>Create an account</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-center">Create an account</CardTitle>
+        <CardDescription className="text-center">
           Enter your information below to create your account
         </CardDescription>
       </CardHeader>
@@ -73,5 +73,5 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
         </form>
       </CardContent>
     </Card>
-  );
+  )
 }

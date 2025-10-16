@@ -1,4 +1,4 @@
-import { SignupForm } from "@/components/signup-form";
+import { SignupForm } from '@/components/signup-form'
 
 function SignUpScreen() {
   return (
@@ -7,7 +7,7 @@ function SignUpScreen() {
         <SignupForm />
       </div>
     </div>
-  );
+  )
 }
 
-export default SignUpScreen;
+export default SignUpScreen

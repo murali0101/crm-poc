@@ -13,7 +13,7 @@ import {
   useReactTable,
   type VisibilityState,
 } from '@tanstack/react-table'
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react'
+import { MoreHorizontal } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -29,7 +29,6 @@ import {
 } from '@/components/ui/dialog'
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
@@ -47,53 +46,43 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-export type Company = {
+export type ApiToken = {
   id: string
   name: string
-  industry: string
-  contactPerson: string
-  status: 'lead' | 'customer' | 'archived'
+  token: string
+  createdAt: string
+  lastUsed: string
+  status: 'active' | 'revoked'
 }
 
-const data: Company[] = [
+const data: ApiToken[] = [
   {
     id: 'm5gr84i9',
-    name: 'Innovate Inc.',
-    industry: 'Technology',
-    contactPerson: 'John Doe',
-    status: 'customer',
+    name: 'Primary Token',
+    token: 'ghp_16C7e42F292c6912E7710c93f33',
+    createdAt: '2023-10-26',
+    lastUsed: '2023-10-26',
+    status: 'active',
   },
   {
     id: '3u1reuv4',
-    name: 'Synergy Corp.',
-    industry: 'Finance',
-    contactPerson: 'Jane Smith',
-    status: 'lead',
+    name: 'Analytics Token',
+    token: 'ghp_16C7e42F292c6912E7710c93f34',
+    createdAt: '2023-10-25',
+    lastUsed: '2023-10-25',
+    status: 'active',
   },
   {
     id: 'derv1ws0',
-    name: 'Quantum Solutions',
-    industry: 'Healthcare',
-    contactPerson: 'Peter Jones',
-    status: 'archived',
-  },
-  {
-    id: '5kma53ae',
-    name: 'Apex Industries',
-    industry: 'Manufacturing',
-    contactPerson: 'Mary Johnson',
-    status: 'customer',
-  },
-  {
-    id: 'bhqecj4p',
-    name: 'Starlight Enterprises',
-    industry: 'Entertainment',
-    contactPerson: 'David Williams',
-    status: 'lead',
+    name: 'Old Token',
+    token: 'ghp_16C7e42F292c6912E7710c93f35',
+    createdAt: '2023-01-01',
+    lastUsed: '2023-01-15',
+    status: 'revoked',
   },
 ]
 
-export const columns: ColumnDef<Company>[] = [
+export const columns: ColumnDef<ApiToken>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -118,18 +107,25 @@ export const columns: ColumnDef<Company>[] = [
   },
   {
     accessorKey: 'name',
-    header: 'Company Name',
+    header: 'Name',
     cell: ({ row }) => <div className="capitalize">{row.getValue('name')}</div>,
   },
   {
-    accessorKey: 'industry',
-    header: 'Industry',
-    cell: ({ row }) => <div>{row.getValue('industry')}</div>,
+    accessorKey: 'token',
+    header: 'Token',
+    cell: ({ row }) => (
+      <div className="font-mono">{`${(row.getValue('token') as string).substring(0, 8)}...`}</div>
+    ),
   },
   {
-    accessorKey: 'contactPerson',
-    header: 'Contact Person',
-    cell: ({ row }) => <div>{row.getValue('contactPerson')}</div>,
+    accessorKey: 'createdAt',
+    header: 'Created At',
+    cell: ({ row }) => <div>{row.getValue('createdAt')}</div>,
+  },
+  {
+    accessorKey: 'lastUsed',
+    header: 'Last Used',
+    cell: ({ row }) => <div>{row.getValue('lastUsed')}</div>,
   },
   {
     accessorKey: 'status',
@@ -137,11 +133,10 @@ export const columns: ColumnDef<Company>[] = [
     cell: ({ row }) => {
       const status = row.getValue('status') as string
       const statusVariantMap: {
-        [key: string]: 'default' | 'secondary' | 'destructive'
+        [key: string]: 'default' | 'destructive'
       } = {
-        customer: 'default',
-        lead: 'secondary',
-        archived: 'destructive',
+        active: 'default',
+        revoked: 'destructive',
       }
 
       return (
@@ -155,7 +150,7 @@ export const columns: ColumnDef<Company>[] = [
     id: 'actions',
     enableHiding: false,
     cell: ({ row }) => {
-      const company = row.original
+      const token = row.original
 
       return (
         <DropdownMenu>
@@ -168,13 +163,12 @@ export const columns: ColumnDef<Company>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(company.id)}
+              onClick={() => navigator.clipboard.writeText(token.token)}
             >
-              Copy company ID
+              Copy token
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View company</DropdownMenuItem>
-            <DropdownMenuItem>View details</DropdownMenuItem>
+            <DropdownMenuItem>Revoke token</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
@@ -182,7 +176,7 @@ export const columns: ColumnDef<Company>[] = [
   },
 ]
 
-export function CompaniesTable() {
+export function ApiTokensTable() {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -191,25 +185,12 @@ export function CompaniesTable() {
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
   const [open, setOpen] = React.useState(false)
-  const [newCompany, setNewCompany] = React.useState({
-    name: '',
-    industry: '',
-    contactPerson: '',
-  })
+  const [newTokenName, setNewTokenName] = React.useState('')
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = e.target
-    setNewCompany((prev) => ({ ...prev, [id]: value }))
-  }
-
-  const handleCreateCompany = () => {
-    console.log('Creating new company:', newCompany)
+  const handleCreateToken = () => {
+    console.log('Creating new token with name:', newTokenName)
     setOpen(false)
-    setNewCompany({
-      name: '',
-      industry: '',
-      contactPerson: '',
-    })
+    setNewTokenName('')
   }
 
   const table = useReactTable({
@@ -235,7 +216,7 @@ export function CompaniesTable() {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter companies..."
+          placeholder="Filter tokens..."
           value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
           onChange={(event) =>
             table.getColumn('name')?.setFilterValue(event.target.value)
@@ -245,14 +226,14 @@ export function CompaniesTable() {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button variant="outline" className="ml-4">
-              Create Company
+              Create Token
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
-              <DialogTitle>Create New Company</DialogTitle>
+              <DialogTitle>Create New API Token</DialogTitle>
               <DialogDescription>
-                Enter the details of the new company below.
+                Enter a name for your new token.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
@@ -262,67 +243,19 @@ export function CompaniesTable() {
                 </Label>
                 <Input
                   id="name"
-                  value={newCompany.name}
-                  onChange={handleInputChange}
-                  className="col-span-3"
-                />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="industry" className="text-right">
-                  Industry
-                </Label>
-                <Input
-                  id="industry"
-                  value={newCompany.industry}
-                  onChange={handleInputChange}
-                  className="col-span-3"
-                />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="contactPerson" className="text-right">
-                  Contact Person
-                </Label>
-                <Input
-                  id="contactPerson"
-                  value={newCompany.contactPerson}
-                  onChange={handleInputChange}
+                  value={newTokenName}
+                  onChange={(e) => setNewTokenName(e.target.value)}
                   className="col-span-3"
                 />
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit" onClick={handleCreateCompany}>
+              <Button type="submit" onClick={handleCreateToken}>
                 Create
               </Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                )
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
       </div>
       <div className="overflow-hidden rounded-md border">
         <Table>

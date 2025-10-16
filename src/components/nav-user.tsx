@@ -1,10 +1,10 @@
 import {
-  BadgeCheck,
+  Users,
   Bell,
   ChevronsUpDown,
   CreditCard,
   LogOut,
-  Sparkles,
+  FolderCog,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -33,7 +33,8 @@ export function NavUser({
     avatar: string;
   };
 }) {
-  const { isMobile } = useSidebar();
+  const { isMobile, handleOnClickForManageUsers, handleOnClickForLogout } =
+    useSidebar();
 
   return (
     <SidebarMenu>
@@ -76,15 +77,15 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Sparkles />
-                Upgrade to Pro
+                <FolderCog />
+                Personal Preference
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
+              <DropdownMenuItem onClick={handleOnClickForManageUsers}>
+                <Users />
+                Manage Users
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <CreditCard />
@@ -96,7 +97,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleOnClickForLogout}>
               <LogOut />
               Log out
             </DropdownMenuItem>

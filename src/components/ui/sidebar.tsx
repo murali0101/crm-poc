@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -22,6 +24,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useNavigate } from "react-router-dom";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -38,6 +41,8 @@ type SidebarContextProps = {
   setOpenMobile: (open: boolean) => void;
   isMobile: boolean;
   toggleSidebar: () => void;
+  handleOnClickForManageUsers: () => void;
+  handleOnClickForLogout: () => void;
 };
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null);
@@ -111,6 +116,16 @@ function SidebarProvider({
   // This makes it easier to style the sidebar with Tailwind classes.
   const state = open ? "expanded" : "collapsed";
 
+  const navigate = useNavigate();
+
+  const handleOnClickForManageUsers = () => {
+    navigate("/manage-users");
+  };
+
+  const handleOnClickForLogout = () => {
+    navigate("/");
+  };
+
   const contextValue = React.useMemo<SidebarContextProps>(
     () => ({
       state,
@@ -120,6 +135,8 @@ function SidebarProvider({
       openMobile,
       setOpenMobile,
       toggleSidebar,
+      handleOnClickForManageUsers,
+      handleOnClickForLogout,
     }),
     [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar],
   );

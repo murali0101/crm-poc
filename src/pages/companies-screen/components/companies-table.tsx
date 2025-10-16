@@ -13,7 +13,7 @@ import {
   useReactTable,
   type VisibilityState,
 } from '@tanstack/react-table'
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react'
+import { ChevronDown, MoreHorizontal } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   DndContext,
   closestCenter,
@@ -18,7 +18,17 @@ import {
 } from '@dnd-kit/sortable'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { PlusCircle } from 'lucide-react'
 
 type Deal = {
   id: string
@@ -26,6 +36,13 @@ type Deal = {
   company: string
   value: number
   stage: 'Lead' | 'Qualified' | 'Proposal' | 'Won' | 'Lost'
+  priority: 'Low' | 'Medium' | 'High'
+  closeDate: string
+  owner: {
+    name: string
+    fallback: string
+    avatarUrl?: string
+  }
 }
 
 const initialDeals: Deal[] = [
@@ -35,6 +52,9 @@ const initialDeals: Deal[] = [
     company: 'Innovate Inc.',
     value: 10000,
     stage: 'Lead',
+    priority: 'Medium',
+    closeDate: '2025-12-31',
+    owner: { name: 'John Doe', fallback: 'JD' },
   },
   {
     id: '2',
@@ -42,6 +62,9 @@ const initialDeals: Deal[] = [
     company: 'Synergy Corp.',
     value: 25000,
     stage: 'Qualified',
+    priority: 'High',
+    closeDate: '2025-11-30',
+    owner: { name: 'Jane Smith', fallback: 'JS' },
   },
   {
     id: '3',
@@ -49,6 +72,9 @@ const initialDeals: Deal[] = [
     company: 'Quantum Solutions',
     value: 50000,
     stage: 'Proposal',
+    priority: 'High',
+    closeDate: '2025-10-31',
+    owner: { name: 'Peter Jones', fallback: 'PJ' },
   },
   {
     id: '4',
@@ -56,6 +82,9 @@ const initialDeals: Deal[] = [
     company: 'Apex Industries',
     value: 5000,
     stage: 'Won',
+    priority: 'Low',
+    closeDate: '2025-09-30',
+    owner: { name: 'Mary Johnson', fallback: 'MJ' },
   },
   {
     id: '5',
@@ -63,10 +92,31 @@ const initialDeals: Deal[] = [
     company: 'Starlight Enterprises',
     value: 30000,
     stage: 'Lost',
+    priority: 'Medium',
+    closeDate: '2025-08-31',
+    owner: { name: 'David Williams', fallback: 'DW' },
+  },
+  {
+    id: '6',
+    title: 'CRM Implementation',
+    company: 'Innovate Inc.',
+    value: 45000,
+    stage: 'Lead',
+    priority: 'High',
+    closeDate: '2026-01-15',
+    owner: { name: 'John Doe', fallback: 'JD' },
   },
 ]
 
 const stages = ['Lead', 'Qualified', 'Proposal', 'Won', 'Lost']
+
+const priorityVariantMap: {
+  [key: string]: 'default' | 'secondary' | 'destructive'
+} = {
+  Low: 'secondary',
+  Medium: 'default',
+  High: 'destructive',
+}
 
 function SortableItem({ deal }: { deal: Deal }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -79,13 +129,25 @@ function SortableItem({ deal }: { deal: Deal }) {
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <Card className="mb-2">
+      <Card className="mb-4">
         <CardContent className="p-4">
-          <p className="font-bold">{deal.title}</p>
+          <div className="flex items-center justify-between mb-2">
+            <p className="font-bold">{deal.title}</p>
+            <Avatar className="size-6">
+              <AvatarImage src={deal.owner.avatarUrl} />
+              <AvatarFallback>{deal.owner.fallback}</AvatarFallback>
+            </Avatar>
+          </div>
           <p className="text-sm text-muted-foreground">{deal.company}</p>
           <p className="text-sm font-bold mt-2">
             ${deal.value.toLocaleString()}
           </p>
+          <div className="flex items-center justify-between mt-4 text-xs text-muted-foreground">
+            <Badge variant={priorityVariantMap[deal.priority]}>
+              {deal.priority}
+            </Badge>
+            <span>{deal.closeDate}</span>
+          </div>
         </CardContent>
       </Card>
     </div>
@@ -94,9 +156,10 @@ function SortableItem({ deal }: { deal: Deal }) {
 
 function DealColumn({ stage, deals }: { stage: string; deals: Deal[] }) {
   return (
-    <Card className="w-full">
-      <CardHeader>
+    <Card className="w-full bg-muted/20">
+      <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle>{stage}</CardTitle>
+        <span className="text-sm font-bold">{deals.length}</span>
       </CardHeader>
       <CardContent>
         <SortableContext
@@ -108,6 +171,14 @@ function DealColumn({ stage, deals }: { stage: string; deals: Deal[] }) {
           ))}
         </SortableContext>
       </CardContent>
+      {stage === 'Lead' && (
+        <CardFooter>
+          <Button variant="ghost" className="w-full">
+            <PlusCircle className="mr-2" />
+            Create Deal
+          </Button>
+        </CardFooter>
+      )}
     </Card>
   )
 }
@@ -131,11 +202,9 @@ export function DealsBoard() {
 
       if (oldIndex !== -1 && newIndex !== -1) {
         const newDeals = arrayMove(deals, oldIndex, newIndex)
-
         // This is a simplified logic. A real implementation would need to know which column the item was dropped into.
         // For this example, we'll just reorder the list, but the stage of the deal won't change.
         // A more complex implementation would involve separate state for each column.
-
         setDeals(newDeals)
       }
     }

@@ -30,6 +30,16 @@ const dealActivities: Activity[] = [
     action: 'Lost deal "E-commerce Platform"',
     timestamp: '4 hours ago',
   },
+  {
+    person: { name: 'Peter Jones', fallback: 'PJ' },
+    action: 'Added a new note to "Cloud Migration"',
+    timestamp: '1 day ago',
+  },
+  {
+    person: { name: 'Mary Johnson', fallback: 'MJ' },
+    action: 'Scheduled a meeting for "CRM Implementation"',
+    timestamp: '2 days ago',
+  },
 ]
 
 export default function DealsScreen() {

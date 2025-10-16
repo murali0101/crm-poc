@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 type SignInContextType = {
   handleOnClickForLoginBtn: () => void;
@@ -13,13 +13,15 @@ export function SignInContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const navigate  =  useNavigate();
+  const navigate = useNavigate();
   const handleOnClickForSignUpBtn = () => {
-    navigate('/sign-up')
+    navigate("/sign-up");
   };
-  const handleOnClickForLoginBtn = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    navigate('/home')
+  const handleOnClickForLoginBtn = (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
+    event.preventDefault();
+    navigate("/home");
   };
   const value = {
     handleOnClickForLoginBtn,

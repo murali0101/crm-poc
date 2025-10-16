@@ -9,7 +9,11 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthContextProvider({ children }: { children: React.ReactNode }) {
+export function AuthContextProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [token, setToken] = useLocalStorage<string | null>("token", null);
 
   const isAuthenticated = !!token;

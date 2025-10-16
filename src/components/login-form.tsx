@@ -1,29 +1,27 @@
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
-} from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
-import { Link } from "react-router-dom"
-import { useSignInContext } from "@/pages/sign-in-screen/contexts/SignInContextProvider"
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
+import { useSignInContext } from "@/pages/sign-in-screen/contexts/SignInContextProvider";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const {
-    handleOnClickForLoginBtn
-  } = useSignInContext()
+  const { handleOnClickForLoginBtn } = useSignInContext();
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -63,7 +61,8 @@ export function LoginForm({
                   Login with Google
                 </Button>
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account? <Link to={'/sign-up'}>Sign up</Link>
+                  Don&apos;t have an account?{" "}
+                  <Link to={"/sign-up"}>Sign up</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>
@@ -71,5 +70,5 @@ export function LoginForm({
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

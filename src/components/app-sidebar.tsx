@@ -3,15 +3,18 @@
 import * as React from "react";
 import {
   AudioWaveform,
-  BookOpen,
-  Bot,
+  BarChart,
+  Building,
+  CheckSquare,
   Command,
-  Frame,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
+  Handshake,
+  LayoutDashboard,
+  LifeBuoy,
+  Megaphone,
+  Settings,
+  TrendingUp,
+  Users,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -52,71 +55,46 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Dashboard",
       url: "#",
-      icon: SquareTerminal,
+      icon: LayoutDashboard,
       isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
+      items: [],
     },
     {
-      title: "Models",
+      title: "Contacts",
       url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
+      icon: Users,
+      items: [],
     },
     {
-      title: "Documentation",
+      title: "Companies",
       url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
+      icon: Building,
+      items: [],
+    },
+    {
+      title: "Deals",
+      url: "#",
+      icon: Handshake,
+      items: [],
+    },
+    {
+      title: "Tasks",
+      url: "#",
+      icon: CheckSquare,
+      items: [],
+    },
+    {
+      title: "Reports",
+      url: "#",
+      icon: BarChart,
+      items: [],
     },
     {
       title: "Settings",
       url: "#",
-      icon: Settings2,
+      icon: Settings,
       items: [
         {
           title: "General",
@@ -139,19 +117,19 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Sales Team",
       url: "#",
-      icon: Frame,
+      icon: TrendingUp,
     },
     {
-      name: "Sales & Marketing",
+      name: "Marketing Team",
       url: "#",
-      icon: PieChart,
+      icon: Megaphone,
     },
     {
-      name: "Travel",
+      name: "Support Team",
       url: "#",
-      icon: Map,
+      icon: LifeBuoy,
     },
   ],
 };

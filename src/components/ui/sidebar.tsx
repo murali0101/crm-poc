@@ -43,6 +43,7 @@ type SidebarContextProps = {
   toggleSidebar: () => void;
   handleOnClickForManageUsers: () => void;
   handleOnClickForLogout: () => void;
+  handleOnClickForPersonalPreference: () => void;
 };
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null);
@@ -126,6 +127,10 @@ function SidebarProvider({
     navigate("/");
   };
 
+  const handleOnClickForPersonalPreference = () => {
+    navigate("/personal-preference");
+  };
+
   const contextValue = React.useMemo<SidebarContextProps>(
     () => ({
       state,
@@ -137,6 +142,7 @@ function SidebarProvider({
       toggleSidebar,
       handleOnClickForManageUsers,
       handleOnClickForLogout,
+      handleOnClickForPersonalPreference,
     }),
     [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar],
   );

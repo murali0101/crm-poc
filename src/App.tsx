@@ -5,6 +5,7 @@ import SignInScreen from "@/pages/sign-in-screen";
 import SignUpScreen from "@/pages/sign-up-screen";
 import HomeScreen from "./pages/home-screen";
 import ManageUsersScreen from "./pages/manage-user-screen";
+import PersonalPreferenceScreen from "./pages/personal-preference-screen";
 function App() {
   return (
     <Fragment>
@@ -14,6 +15,10 @@ function App() {
           <Route path="/sign-up" element={<SignUpScreen />} />
           <Route path="/home" element={<HomeScreen />} />
           <Route path="/manage-users" element={<ManageUsersScreen />} />
+          <Route
+            path="/personal-preference"
+            element={<PersonalPreferenceScreen />}
+          />
         </Routes>
       </BrowserRouter>
     </Fragment>

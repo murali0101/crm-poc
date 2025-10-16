@@ -33,8 +33,12 @@ export function NavUser({
     avatar: string;
   };
 }) {
-  const { isMobile, handleOnClickForManageUsers, handleOnClickForLogout } =
-    useSidebar();
+  const {
+    isMobile,
+    handleOnClickForManageUsers,
+    handleOnClickForLogout,
+    handleOnClickForPersonalPreference,
+  } = useSidebar();
 
   return (
     <SidebarMenu>
@@ -76,7 +80,7 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleOnClickForPersonalPreference}>
                 <FolderCog />
                 Personal Preference
               </DropdownMenuItem>

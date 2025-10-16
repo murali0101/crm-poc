@@ -14,7 +14,7 @@ import {
   Pie,
   Cell,
 } from 'recharts'
-import { ChartContainer } from '@/components/ui/chart'
+// import { ChartContainer } from '@/components/ui/chart'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -104,7 +104,7 @@ export default function ReportsScreen() {
                     fill="#8884d8"
                     dataKey="value"
                   >
-                    {dealsByStageData.map((entry, index) => (
+                    {dealsByStageData.map((_entry, index) => (
                       <Cell
                         key={`cell-${index}`}
                         fill={COLORS[index % COLORS.length]}

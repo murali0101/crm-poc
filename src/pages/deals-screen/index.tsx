@@ -1,11 +1,14 @@
+import { DealsBoard } from "./components/deals-board";
+import {
+  RecentActivities,
+  type Activity,
+} from "@/components/recent-activities";
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -14,7 +17,25 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
-export default function HomeScreen() {
+const dealActivities: Activity[] = [
+  {
+    person: { name: "Olivia Martin", fallback: "OM" },
+    action: 'Moved "Website Redesign" to Proposal',
+    timestamp: "10 min ago",
+  },
+  {
+    person: { name: "John Doe", fallback: "JD" },
+    action: 'Won deal "New Marketing Campaign"',
+    timestamp: "1 hour ago",
+  },
+  {
+    person: { name: "Jane Smith", fallback: "JS" },
+    action: 'Lost deal "E-commerce Platform"',
+    timestamp: "4 hours ago",
+  },
+];
+
+export default function DealsScreen() {
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -28,26 +49,20 @@ export default function HomeScreen() {
             />
             <Breadcrumb>
               <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage> Screen Name </BreadcrumbPage>
+                  <BreadcrumbPage>Deals</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-          </div>
-          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
+          <DealsBoard />
+          <RecentActivities
+            title="Deal Activities"
+            description="Recent activities related to deals."
+            activities={dealActivities}
+          />
         </div>
       </SidebarInset>
     </SidebarProvider>

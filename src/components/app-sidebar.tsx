@@ -56,44 +56,38 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: LayoutDashboard,
       isActive: true,
-      items: [],
     },
     {
       title: "Contacts",
-      url: "#",
+      url: "/contacts",
       icon: Users,
-      items: [],
     },
     {
       title: "Companies",
-      url: "#",
+      url: "/companies",
       icon: Building,
-      items: [],
     },
     {
       title: "Deals",
-      url: "#",
+      url: "/deals",
       icon: Handshake,
-      items: [],
     },
     {
       title: "Tasks",
-      url: "#",
+      url: "/tasks",
       icon: CheckSquare,
-      items: [],
     },
     {
       title: "Reports",
-      url: "#",
+      url: "/reports",
       icon: BarChart,
-      items: [],
     },
     {
       title: "Settings",
-      url: "#",
+      url: "/settings",
       icon: Settings,
       items: [
         {

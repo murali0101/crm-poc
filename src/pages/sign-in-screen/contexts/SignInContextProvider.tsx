@@ -21,7 +21,7 @@ export function SignInContextProvider({
     event: React.FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
-    navigate("/home");
+    navigate("/dashboard");
   };
   const value = {
     handleOnClickForLoginBtn,

@@ -1,4 +1,7 @@
-import { useTheme } from "@/contexts/ThemeContextProvider";
+import {
+  RecentActivities,
+  type Activity,
+} from "@/components/recent-activities";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,9 +25,25 @@ import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export default function PersonalPreferenceScreen() {
-  const { theme, setTheme, colorTheme, setColorTheme } = useTheme();
+const settingsActivities: Activity[] = [
+  {
+    person: { name: "You", fallback: "Y" },
+    action: "Changed your name to John Doe.",
+    timestamp: "2 days ago",
+  },
+  {
+    person: { name: "You", fallback: "Y" },
+    action: "Enabled push notifications.",
+    timestamp: "5 days ago",
+  },
+  {
+    person: { name: "System", fallback: "S" },
+    action: "Your password was successfully changed.",
+    timestamp: "1 week ago",
+  },
+];
 
+export default function SettingsScreen() {
   return (
     <SidebarProvider
       style={
@@ -36,7 +55,7 @@ export default function PersonalPreferenceScreen() {
     >
       <AppSidebar variant="inset" />
       <SidebarInset>
-        <SiteHeader />
+        <SiteHeader title="Settings" />
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6 px-2.5">
@@ -54,6 +73,7 @@ export default function PersonalPreferenceScreen() {
                     <TabsTrigger value="notifications">
                       Notifications
                     </TabsTrigger>
+                    <TabsTrigger value="activity">Activity Log</TabsTrigger>
                   </TabsList>
                   <TabsContent value="account">
                     <Card>
@@ -126,10 +146,7 @@ export default function PersonalPreferenceScreen() {
                       <CardContent className="space-y-4">
                         <div className="space-y-2">
                           <Label>Theme</Label>
-                          <Select
-                            value={theme}
-                            onValueChange={setTheme as (value: string) => void}
-                          >
+                          <Select>
                             <SelectTrigger>
                               <SelectValue placeholder="Select a theme" />
                             </SelectTrigger>
@@ -137,26 +154,6 @@ export default function PersonalPreferenceScreen() {
                               <SelectItem value="light">Light</SelectItem>
                               <SelectItem value="dark">Dark</SelectItem>
                               <SelectItem value="system">System</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="space-y-2">
-                          <Label>Color Theme</Label>
-                          <Select
-                            value={colorTheme}
-                            onValueChange={
-                              setColorTheme as (value: string) => void
-                            }
-                          >
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select a color theme" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="slate">Slate</SelectItem>
-                              <SelectItem value="blue">Blue</SelectItem>
-                              <SelectItem value="purple">Purple</SelectItem>
-                              <SelectItem value="green">Green</SelectItem>
-                              <SelectItem value="orange">Orange</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
@@ -223,6 +220,13 @@ export default function PersonalPreferenceScreen() {
                         <Button>Save changes</Button>
                       </CardFooter>
                     </Card>
+                  </TabsContent>
+                  <TabsContent value="activity">
+                    <RecentActivities
+                      title="Activity Log"
+                      description="A log of recent changes to your settings."
+                      activities={settingsActivities}
+                    />
                   </TabsContent>
                 </Tabs>
               </div>
